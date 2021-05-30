@@ -1,47 +1,39 @@
-use std::time::SystemTime;
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
+use std::time::SystemTime;
 
-// #[derive(Debug, Hash)]
-// pub struct Transaction {
-//     account: String,
-//     timestamp: SystemTime,
-//     data: Option<String>
-// }
+// we will define our block here
+//
+// the block will be based on the following assumptions:
+// 1. one block will hold only one piece of information
 
-// impl Transaction {
-//     pub fn new( account: &str, data: Option<&str>) -> Self
-//     {
-//         Transaction{
-//             account: account.to_string(),
-//             timestamp: SystemTime::now(),
-//             data: Some(data.unwrap().to_string())
-//         }
-//     }
-// }
+// basic struct for a Block
+#[derive(Debug)]
+pub struct Block {
+    timestamp: SystemTime,
+    hash: Option<String>,
+    nonce: u128,
+    prev_hash: Option<String>,
+    data: Option<String>,
+}
 
-// // one block will only have one transaction
-// #[derive(Debug)]
-// pub struct Block<'a> {
-//     timestamp: SystemTime,
-//     transaction: Option<&'a Transaction>,
-//     current_block_hash: Option<String>,
-//     previous_block_hash: Option<String>
-// }
+// utility methods we need to support the main operations in a block
+impl Block {
+    pub fn new(data: &str) -> Self {
+        Block {
+            timestamp: SystemTime::now(),
+            hash: Block::calculate_hash(data),
+            nonce: 0,
+            prev_hash: None,
+            data: Some(data.to_string()),
+        }
+    }
 
-// impl<'t> Block<'t> {
-//     pub fn new(previous_block_hash: Option<String>, transaction: Option<&'t Transaction>) -> Block {
-//         Block {
-//             timestamp: SystemTime::now(),
-//             transaction,
-//             current_block_hash: Block::calculate_hash(transaction.unwrap()),
-//             previous_block_hash
-//         }
-//     }
-
-//     fn calculate_hash(transaction: &Transaction) -> Option<String> {
-//         let mut hash = DefaultHasher::new();
-//         transaction.hash(&mut hash);
-//         return Some(hash.finish().to_string());
-//     }
-// }
+    // we need one more method to check if the hash produced is valid
+    // basically, check if the first N characters are zeros
+    pub fn calculate_hash(data: &str) -> Option<String> {
+        let mut hash = DefaultHasher::new();
+        data.hash(&mut hash);
+        return Some(hash.finish().to_string());
+    }
+}
