@@ -1,12 +1,12 @@
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Account {
-    address: String,
-    public_key: String,
+    pub address: String,
+    pub public_key: String,
     private_key: String,
-    balance: u128
+    pub balance: u128
 }
 
 impl Account {

@@ -1,15 +1,20 @@
-use super::block::Block;
+use super::Account;
+use super::Block;
 use std::vec::Vec;
 
 #[derive(Debug)]
 pub struct BlockChain {
-    block: Vec<Block>
+    hash: Option<String>,
+    block: Vec<Block>,
+    accounts: Vec<Account>,
 }
 
 impl BlockChain {
     pub fn new() -> Self {
         BlockChain {
-            block: Vec::new()
+            hash: None,
+            block: Vec::new(),
+            accounts: Vec::new(),
         }
     }
 
