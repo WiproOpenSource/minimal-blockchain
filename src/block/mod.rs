@@ -35,7 +35,7 @@ impl Block {
     }
 
     /// add new transaction
-    pub fn add_transaction(&mut self, trx: Transaction) {
+    pub fn add_transaction(self: &mut Self, trx: Transaction) {
         // now this is where the magic happens:
         // every transaction has data in it and we convert it into a hash, this is the transactions
         // hash.
@@ -44,7 +44,7 @@ impl Block {
         self.calculate_hash();
     }
 
-    fn calculate_hash(&mut self) {
+    fn calculate_hash(self: &mut Self) {
         let mut hasher = DefaultHasher::new();
         let mut temp_block_str = String::new();
 

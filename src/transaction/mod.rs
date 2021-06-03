@@ -43,7 +43,7 @@ impl Transaction {
     }
 
     // calculate the hash of the transaction
-    pub fn calculate_hash(&mut self) {
+    pub fn calculate_hash(self: &mut Self) {
         let mut hasher = DefaultHasher::new();
         let trx_string = format!("{:?}", (&self.transaction, &self.created_at, &self.created_by, &self.nonce) );
         trx_string.hash(&mut hasher);
@@ -51,7 +51,7 @@ impl Transaction {
     }
 
     // 2. execute transaction
-    pub fn execute(&self) -> Result<(), String> {
+    pub fn execute(self: &mut Self) -> Result<(), String> {
         todo!()
     }
 
