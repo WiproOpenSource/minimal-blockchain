@@ -1,5 +1,5 @@
 # minimal-blockchain
-![](https://github.com/whereistejas/minimal-blockchain/blob/main/.github/workflows/ci.yml/badge.svg)
+![workflow status](https://github.com/whereistejas/minimal-blockchain/blob/main/.github/workflows/ci.yml/badge.svg)
 
 minimal blockchain implementation in Rust
 
