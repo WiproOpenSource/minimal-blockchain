@@ -23,5 +23,7 @@ fn duplicate_accounts() {
 
     let mut blockchain = BlockChain::new();
 
-    println!("{:#?}", blockchain.add_block(block) );
+    let result = blockchain.add_block(block).is_err();
+
+    assert_eq!(result, true);
 }

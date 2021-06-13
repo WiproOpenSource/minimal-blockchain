@@ -17,7 +17,7 @@ pub struct BlockChain {
 impl WorldState for BlockChain {
     fn create_account(&mut self, account: &Account) -> Result<(), &str> {
         for acc in self.accounts.iter() {
-            if acc.public_key == account.public_key {
+            if acc.public_key.eq(&account.public_key) {
                 return Err("This account already exists");
             };
         }
