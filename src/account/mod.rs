@@ -1,6 +1,11 @@
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
+/// this struct has the following properties:
+/// 1. address
+/// 2. public key
+/// 3. private key
+/// 4. balance
 #[derive(Debug, Clone)]
 pub struct Account {
     pub address: String,

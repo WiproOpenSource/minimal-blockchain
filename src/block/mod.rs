@@ -13,16 +13,16 @@ use super::transaction::Transaction;
 /// will keep it here for now
 #[derive(Debug)]
 pub struct Block {
-    timestamp: SystemTime,
-    hash: Option<String>,
-    nonce: u128,
-    prev_hash: Option<String>,
-    transactions: Vec<Transaction>,
+    pub timestamp: SystemTime,
+    pub hash: Option<String>,
+    pub nonce: u128,
+    pub prev_hash: Option<String>,
+    pub transactions: Vec<Transaction>,
 }
 
 impl Block {
     /// create a new block
-    pub fn new() -> Self {
+    pub fn new() -> Block {
         Block {
             timestamp: SystemTime::now(),
             hash: None,
@@ -59,12 +59,12 @@ impl Block {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn check_add_new_blocks() {
-        let test_block = Block::new();
-    }
-}
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+// 
+//     #[test]
+//     fn check_add_new_blocks() {
+//         let test_block = Block::new();
+//     }
+// }
